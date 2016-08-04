@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" ng-app="RDash">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Sistema Planificador</title>
+        <!-- STYLES -->
+        <link rel="stylesheet" href="lib/css/main.min.css"/>
+        <!-- SCRIPTS -->
+        <script src="lib/js/main.min.js"></script>
+        <!-- Custom Scripts -->
+        <script type="text/javascript" src="js/dashboard.min.js"></script>
+        <script type="text/javascript" src="js/lenguaje.js"></script>
+        <script type="text/javascript" src="js/validacion.js"></script>
+        <script type="text/javascript" src="js/notif.js"></script>
+        <script type="text/javascript" src="js/pdfmake.js"></script>
+        <script type="text/javascript" src="js/vfs_fonts.js"></script>
+    </head>
+    <body ng-controller="MasterCtrl">
+        <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar">
+                    <li class="sidebar-main">
+                        <a>
+                            <span ng-click="toggleSidebar()" class="menu-icon glyphicon glyphicon-transfer"></span>
+                        </a>
+                    </li>
+                    <li><span><a  href="#/inicio" class="sidebar-title">Inicio</a></span></li>
+                    <li class="sidebar-list">
+                        <a href="#/nProyecto">Nuevo Proyecto <span class="menu-icon fa fa-book"></span></a>
+                        <a href="#/gProyecto">Gestionar Proyecto <span class="menu-icon fa fa-briefcase"></span></a>
+                        <a href="#/Linea">Nueva Línea <span class="menu-icon fa fa-sitemap"></span></a>
+                        <a href="#/gLinea">Gestionar Línea <span class="menu-icon fa fa-building"></span></a>
+                        <a href="#/nItem">Nuevo Item <span class="menu-icon fa fa-legal"></span></a>
+                        <a href="#/gItem">Gestionar Item <span class="menu-icon fa fa-puzzle-piece"></span></a>
+                        <a href="#/nTipoItem">Nuevo Tipo de Item <span class="menu-icon fa fa-table"></span></a>
+                        <a href="#/gTipoItem">Gestionar Tipo Item <span class="menu-icon fa fa-sliders"></span></a>
+                        <a href="#/nModulo">Nuevo Módulo <span class="menu-icon fa fa-shield"></span></a>
+                        <a href="#/gModulo">Gestionar Módulo <span class="menu-icon fa fa-cogs"></span></a>
+                        <a href="#/Proforma">Proforma <span class="menu-icon fa fa-envelope"></span></a>
+                        <a href="#/Facturar">Facturar <span class="menu-icon fa fa-money"></span></a>
+                        <a href="#/vFactura">Ver Facturas <span class="menu-icon fa fa-university"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Sidebar -->
+
+            <div id="content-wrapper">
+                <div class="page-content">
+
+                    <!-- Header Bar -->
+                    <div class="row header">
+                        <div class="col-xs-12">
+                            <div class="user pull-right">
+                                <div class="item dropdown">
+                                    <a href="#" class="dropdown-toggle">
+                                        <img src="img/avatar.jpg">
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-header">
+                                            {{nameUser}}
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="link">
+                                            <a href="#/Perfil">
+                                                Mi Perfil
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="#/Usuarios">
+                                                Gestionar Usuarios
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="#/Roles">
+                                                Gestionar Roles
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li class="link">
+                                            <a href="#/Sesion">
+                                                Salir
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="item dropdown">
+                                    <a href="#/Notificaciones" ng-show="hayNotif">
+                                        <i class="fa fa-bell fa-spin"></i>
+                                    </a>
+                                    <a href="#/Notificaciones" ng-show="!hayNotif">
+                                        <i class="fa fa-bell-o"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="meta">
+                                <div class="page">
+                                    Sistema Planificador
+                                </div>
+                                <div class="breadcrumb-links">
+                                    Inicio / {{nameUser}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Header Bar -->
+
+                    <!-- Main Content -->
+                    <div ui-view></div>
+
+                </div><!-- End Page Content -->
+            </div><!-- End Content Wrapper -->
+
+        </div><!-- End Page Wrapper -->
+
+    </body>
+</html>
